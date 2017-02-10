@@ -38,3 +38,15 @@ ul, li {
 .series .undone::before {
     content: "\25a1\00a0";
 }
+
+/* Overrides */
+
+.w3-progress-container {
+    float: right;
+    width: 75%;
+        
+}
+
+.series li {
+#    display:none
+}

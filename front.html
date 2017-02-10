@@ -3,12 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <title>Project Tracker - Front-End Demo</title>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="style.css">
+
   </head>
 
   <body>
     <ul class="section"><header>Section Header</header>
-      <li><header>Ruby</header>
+      <li><header>Ruby
+	  <div class="w3-progress-container w3-round w3-red">
+	    <div class="w3-progressbar w3-round w3-green" style="width:80%"></div>
+	  </div>
+	</header>
 	<ul class="series" data-done="4" data-outof="5" data-percentdone="80">
 	  <li class="done">Ruby Intro</li>
 	  <li class="done">Ruby Bits 1</li>
@@ -17,14 +23,22 @@
 	  <li class="undone">Ruby Warrior</li>
 	</ul>
       </li>
-      <li><header>HTML & CSS</header>
-	<ul class="series" data-done="3" data-outof="3" data-percentdone="">
+      <li><header>HTML & CSS
+	  <div class="w3-progress-container w3-round w3-red">
+	    <div class="w3-progressbar w3-round w3-green" style="width:100%"></div>
+	  </div>
+	</header>
+	<ul class="series" data-done="3" data-outof="3" data-percentdone="100">
 	  <li class="done">Front-end Foundations</li>
 	  <li class="done">Front-end Formations</li>
 	  <li class="done">CSS Cross-Country</li>
 	</ul>
       </li>
-      <li><header>SASS</header>
+      <li><header>SASS
+	  <div class="w3-progress-container w3-round w3-red">
+	    <div class="w3-progressbar w3-round w3-green" style="width:0%"></div>
+	  </div>
+	  </header>
 	<ul class="series" data-done="0" data-outof="2" data-percentage="0">
 	  <li class="undone">Assembling SASS</li>
 	  <li class="undone">Assembling SASS 2</li>
