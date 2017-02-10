@@ -44,9 +44,10 @@ ul, li {
 .w3-progress-container {
     float: right;
     width: 50%;
-        
 }
-
+.w3-text-white {
+    padding-left: .5em;
+}
 
 /* Responsive */
 @media screen and (max-width: 500px) {
