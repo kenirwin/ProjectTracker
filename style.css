@@ -51,7 +51,11 @@ ul, li {
 /* Responsive */
 @media screen and (max-width: 500px) {
 
-.series li {
-    display: none
-}
+    .section li header::before {
+	content: "\25b6  ";
+	color: grey;
+    }
+    .series li {
+	display: none
+    }
 }
