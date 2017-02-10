@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+ul {
+    list-style: none;
+}
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+.section header{
+    width: 99%;
+    background-color: #555;
+    background: linear-gradient(180deg, #555, #999);
+    color: #fff;
+    padding: .2em 0 .2em 1%;
+}
+.section li header{
+    background-color: #ccc;
+    background: linear-gradient(180deg, #bbb, #ddd);
+    color: #000;
+}
+.series li {
+    background-color: #eee;
+    padding: .2em 0 .2em 1.4em;
+    border-bottom: 1px solid #ccc;
+}
+.series .done {
+    color: green;
+}
+.series .undone {
+    color: darkred;
+}
+.series .done::before {
+    content: "\2713 ";
+}
+.series .undone::before {
+    content: "\25a1\00a0";
+}
