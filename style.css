@@ -49,6 +49,13 @@ ul, li {
     padding-left: .5em;
 }
 
+/* Edit Screen */
+#edit .w3-progress-container {
+    display: none; 
+}
+#edit .add {
+    font-style: italic;
+}
 /* Responsive */
 @media screen and (max-width: 500px) {
 

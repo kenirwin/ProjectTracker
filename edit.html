@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Tracker - Front-End Demo</title>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="style.css">
+    
+  </head>
+
+  <body id="edit">
+    <ul class="section"><header>Section Header</header>
+      <li><header>Ruby
+	  <div class="w3-progress-container w3-round w3-red">
+	    <div class="w3-progressbar w3-round w3-green" style="width:80%">
+	      <div class="w3-left w3-text-white">80%</div>
+	    </div>
+	  </div>
+	</header>
+	<ul class="series" data-done="4" data-outof="5" data-percentdone="80">
+	  <li class="done">Ruby Intro</li>
+	  <li class="done">Ruby Bits 1</li>
+	  <li class="done">Ruby Bits 2</li>
+	  <li class="done">Testing with RSpec</li>
+	  <li class="undone">Ruby Warrior</li>
+	  <li class="add">+ New Item</li>
+	</ul>
+      </li>
+      <li><header>HTML & CSS
+	  <div class="w3-progress-container w3-round w3-red">
+	    <div class="w3-progressbar w3-round w3-green" style="width:100%">
+	      <div class="w3-left w3-text-white">100%</div>
+	    </div>
+	  </div>
+	</header>
+	<ul class="series" data-done="3" data-outof="3" data-percentdone="100">
+	  <li class="done">Front-end Foundations</li>
+	  <li class="done">Front-end Formations</li>
+	  <li class="done">CSS Cross-Country</li>
+	  <li class="add">+ New Item</li>
+	</ul>
+      </li>
+      <li><header>SASS
+	  <div class="w3-progress-container w3-round w3-red">
+	    <div class="w3-progressbar w3-round w3-green" style="width:0%">
+	      <div class="w3-left w3-text-white">0%</div>
+	    </div>
+	  </div>
+	  </header>
+	<ul class="series" data-done="0" data-outof="2" data-percentage="0">
+	  <li class="undone">Assembling SASS</li>
+	  <li class="undone">Assembling SASS 2</li>
+	  <li class="add">+ New Item</li>
+	</ul>
+      </li>
+      <li class="add"><header>+ New Series</header></li>
+    </ul>
+    <ul class="section add"><header>+ New Section</header></ul>
+  </body>
+</html>
