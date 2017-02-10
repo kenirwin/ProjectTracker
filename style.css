@@ -43,10 +43,15 @@ ul, li {
 
 .w3-progress-container {
     float: right;
-    width: 75%;
+    width: 50%;
         
 }
 
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+
 .series li {
-#    display:none
+    display: none
+}
 }
