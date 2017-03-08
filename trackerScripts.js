@@ -23,14 +23,21 @@ $(document).ready(function() {
 	    	e.preventDefault();
 	    	$(this).hide();
 	    	var newItem = form.find('#new_item').val();
-	    	$(this).before('<li class="undone">'+newItem+'</li>');
-	    	data.link.show();
-	    	
+
+	    	if (data.link.parent().hasClass('section')) {
+	    		$(this).before('<li><header>'+newItem+'</header></li>');
+	    	}
+	    	else if (data.link.hasClass('section')) {
+	    		$(this).before('<ul class="section"><header>'+newItem+'</header></ul>');
+	    	}
+	    	else { 
+		    	$(this).before('<li class="undone">'+newItem+'</li>');
+			}
 	    	//if parent = section, needs to be wrapped in a header
 	    	console.log(data.link.parent().attr('class'));
 	   		//if 'section add', needs to be a top-level li
 	    	console.log(data.link.attr('class'));
-	    	console.log($(this))
+	    	data.link.show();
 	    	form.remove();
 		});
 		form = form.wrap('<li></li>');
