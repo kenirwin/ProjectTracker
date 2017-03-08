@@ -30,6 +30,8 @@ $(document).ready(function() {
 	    	console.log(data.link.parent().attr('class'));
 	   		//if 'section add', needs to be a top-level li
 	    	console.log(data.link.attr('class'));
+	    	console.log($(this))
+	    	form.remove();
 		});
 		form = form.wrap('<li></li>');
 		this.addLink.before(form);
