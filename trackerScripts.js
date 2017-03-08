@@ -26,9 +26,11 @@ var Editor = {
 	showForm: function(event) {
 		addLink = $(event.target);
 		addLink.hide();
-		data = { "link": addLink }
+		//series = addLink.closest('.series');
+		section = addLink.closest('.section');
+		data = { "link": addLink, "section": section }
 		var textType = addLink.text().substr(1); //drop the plus sign
-		var form = $('<form></form>').append('<input id="new_item" type="text" placeholder="Enter'+textType+'"/><input type="submit" />');		
+		var form = $('<form></form>').append('<input id="new_item" type="text" placeholder="Enter'+textType+'"/><input type="hidden" id="entryType" value="'+textType+'"><input type="submit" />');		
 		//form = $(form).wrap('<li></li>');
 		addLink.before(form);
 		$('#new_item').focus();
@@ -36,22 +38,26 @@ var Editor = {
 	},
 	submitForm: function(event, data) {
 		event.preventDefault();
-		var newItem = $('#new_item').val();
+		var newItem = $('#new_item');
+		var newItemText = newItem.val();
+		var section = data.section; 
+		//var series = data.series;
 		form = $(event.target);
-
-	    	if (data.link.parent().hasClass('section')) {
-	    		$(form).before('<li><header>'+newItem+'</header></li>');
-	    		//TO DO: trigger creation of new item-level add-link
-	    	}
-	    	else if (data.link.hasClass('section')) {
-	    		$(form).before('<ul class="section"><header>'+newItem+'</header></ul>');
-	    		//TO DO: trigger creation of new series-level add-link
-	    	}
-	    	else { 
-		    	$(form).before('<li class="undone">'+newItem+'</li>');
-			}
-			$(form).remove();
-			data.link.parent().find('.add').show();	
+		if ( $('#entryType').val() === " New Series" ) {
+    		console.log('doing: parent is section');
+    		section.append('<li><header>'+newItemText+'</header></li>');
+    		//TO DO: trigger creation of new item-level add-link
+    	}
+    	else if ($('#entryType').val() === " New Section") {
+    		$('body').append('<ul class="section"><header>'+newItemText+'</header></ul>');
+    		$('.section').last().trigger('addNewLink');
+    		//TO DO: trigger creation of new series-level add-link
+    	}
+    	else { 
+	    	$(form).before('<li class="undone">'+newItemText+'</li>');
+		}
+		$(form).remove();
+//doesnt work		data.link.parent().find('.add').show();	
 
 	},
 	displayNew: function() {
@@ -59,7 +65,7 @@ var Editor = {
 	}
 }
 Editor.init();
-
+$('body').on('addLink', Editor.addNewLink);
 $('.add').on('click', Editor.showForm);
 
 
