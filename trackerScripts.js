@@ -33,5 +33,6 @@ $(document).ready(function() {
 		});
 		form = form.wrap('<li></li>');
 		this.addLink.before(form);
+		$('#new_item').focus();
     });
 });
