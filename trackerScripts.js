@@ -4,7 +4,7 @@ var Editor = {
 	init: function () {
 	    Editor.i = 0;
 	    $('ul').each( function() {
-	    	console.log( $(this) );
+	    	//console.log( $(this) );
 	    	Editor.addNewLink( $(this) );
 		});
 		Editor.addNewLink( $('body') );
@@ -15,7 +15,7 @@ var Editor = {
     },
 	addNewLink: function(parent) {
 		var i = Editor.nextI();
-		console.log(parent.prop("tagName").toLowerCase());
+		//console.log(parent.prop("tagName").toLowerCase());
 		var parentClass = parent.attr('class');
 		if (parentClass === "section") {
 	    	var rowContent = '<li class="add add-series" id="item-'+i+'"><header class="add-series-inner" data-childOf="item-'+i+'">+ New Series</header></li>';
@@ -26,7 +26,7 @@ var Editor = {
 		else if (parent.prop("tagName").toLowerCase() === "body") {
 			var rowContent = '<ul class="section add add-section" id="item-'+i+'"><header class="add-section-inner" data-childOf="item-'+i+'">+ New Section</header></ul>'
 		}
-		console.log(rowContent);
+		//console.log(rowContent);
 		parent.append(rowContent);
 	},
 	showForm: function(event) {
@@ -50,10 +50,9 @@ var Editor = {
 		data = { "link": addLink, "section": section }
 		var textType = addLink.text().substr(1); //drop the plus sign
 		//var form = $('<form></form>').append('<input id="new_item" type="text" placeholder="Enter'+textType+'"/><input type="hidden" id="entryType" value="'+textType+'"><input type="submit" />');		
-		var form = $('<form id="item-'+i+'"></form>').append('<input id="new_item" type="text" placeholder="Enter '+entryType+'" /><input type="submit" />');
+		var form = $('<form id="item-'+i+'"></form>').append('<input id="new_item" type="text" placeholder="Enter '+entryType+'" /><input type="hidden" id="entryType" value="'+entryType+'"><input type="submit" />');
 		//form = $(form).wrap('<li></li>');
 		addLink.before(form);
-		$
 		$('#new_item').focus();
 		$('form').on('submit', data, function (event) { 
 				Editor.submitForm(event, data) 
@@ -69,13 +68,13 @@ var Editor = {
 		var section = data.section; 
 		//var series = data.series;
 		form = $(event.target);
-		if ( $('#entryType').val() === " New Series" ) {
+		if ( $('#entryType').val() === "series" ) {
     		console.log('doing: parent is section');
-    		section.append('<li><header>'+newItemText+'</header></li>');
+    		$(form).before('<li><header>'+newItemText+'</header></li>');
     		//TO DO: trigger creation of new item-level add-link
     	}
-    	else if ($('#entryType').val() === " New Section") {
-    		$('body').append('<ul class="section"><header>'+newItemText+'</header></ul>');
+    	else if ($('#entryType').val() === "section") {
+    		$(form).before('<ul class="section"><header>'+newItemText+'</header></ul>');
     		$('.section').last().trigger('addNewLink');
     		//TO DO: trigger creation of new series-level add-link
     	}
