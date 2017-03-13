@@ -15,7 +15,8 @@ var Editor = {
     },
 	addNewLink: function(parent) {
 		var i = Editor.nextI();
-		//console.log(parent.prop("tagName").toLowerCase());
+		console.log("you clicked on a");
+		console.log(parent.prop("tagName").toLowerCase());
 		var parentClass = parent.attr('class');
 		if (parentClass === "section") {
 	    	var rowContent = '<li class="add add-series" id="item-'+i+'"><header class="add-series-inner" data-childOf="item-'+i+'">+ New Series</header></li>';
@@ -70,16 +71,18 @@ var Editor = {
 		form = $(event.target);
 		if ( $('#entryType').val() === "series" ) {
     		console.log('doing: parent is section');
-    		$(form).before('<li><header>'+newItemText+'</header></li>');
+    		$(form).before('<li id="item-'+i+'" class="added"><header data-childOf="'+i+'">'+newItemText+'</header></li>');
+    		Editor.addNewLink($('#item-'+i+" header"));
     		//TO DO: trigger creation of new item-level add-link
     	}
     	else if ($('#entryType').val() === "section") {
-    		$(form).before('<ul class="section"><header>'+newItemText+'</header></ul>');
+    		$(form).before('<ul class="section" id="item-'+i+'"><header>'+newItemText+'</header></ul>');
     		$('.section').last().trigger('addNewLink');
+    		Editor.addNewLink($('#item-'+i));
     		//TO DO: trigger creation of new series-level add-link
     	}
     	else { 
-	    	$(form).before('<li class="undone">'+newItemText+'</li>');
+	    	$(form).before('<li class="undone" id="item-'+i+'">'+newItemText+'</li>');
 		}
 		$(form).remove();
 //doesnt work		data.link.parent().find('.add').show();	
@@ -93,42 +96,4 @@ Editor.init();
 $('body').on('addLink', Editor.addNewLink);
 $('.add').on('click', Editor.showForm);
 
-
-/*
-
-// add functionality to action divs
-    $('.add').click(function(e) {
-		this.addLink = $(this);
-		this.addLink.hide();
-		data = {"link": this.addLink }
-		var textType = this.addLink.text().substr(1); //drop the plus sign
-		var form = $('<form></form>').append('<input id="new_item" type="text" placeholder="Enter'+textType+'"/><input type="submit" />');
-		form.on('submit', data, function(e) {
-	    	e.preventDefault();
-	    	$(this).hide();
-	    	var newItem = form.find('#new_item').val();
-
-	    	if (data.link.parent().hasClass('section')) {
-	    		$(this).before('<li><header>'+newItem+'</header></li>');
-	    		//TO DO: trigger creation of new item-level add-link
-	    	}
-	    	else if (data.link.hasClass('section')) {
-	    		$(this).before('<ul class="section"><header>'+newItem+'</header></ul>');
-	    		//TO DO: trigger creation of new series-level add-link
-	    	}
-	    	else { 
-		    	$(this).before('<li class="undone">'+newItem+'</li>');
-			}
-	    	//if parent = section, needs to be wrapped in a header
-	    	console.log(data.link.parent().attr('class'));
-	   		//if 'section add', needs to be a top-level li
-	    	console.log(data.link.attr('class'));
-	    	data.link.show();
-	    	form.remove();
-		});
-		form = form.wrap('<li></li>');
-		this.addLink.before(form);
-		$('#new_item').focus();
-    });
-    */
 });
