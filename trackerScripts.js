@@ -2,29 +2,39 @@ $(document).ready(function() {
 
 var Editor = {
 	init: function () {
+	    Editor.i = 0;
 	    $('ul').each( function() {
 	    	console.log( $(this) );
 	    	Editor.addNewLink( $(this) );
 		});
 		Editor.addNewLink( $('body') );
 	},
+    nextI: function () {
+    	Editor.i++;
+    	return Editor.i;
+    },
 	addNewLink: function(parent) {
+		var i = Editor.nextI();
 		console.log(parent.prop("tagName").toLowerCase());
 		var parentClass = parent.attr('class');
 		if (parentClass === "section") {
-	    	var rowContent = '<li class="add"><header>+ New Series</header></li>';
+	    	var rowContent = '<li class="add add-series" id="item-'+i+'"><header>+ New Series</header></li>';
 		}
 		else if (parentClass === "series") {
-	    	var rowContent = '<li class="add">+ New Item</li>';
+	    	var rowContent = '<li class="add add-item" id="item-'+i+'">+ New Item</li>';
 		}
 		else if (parent.prop("tagName").toLowerCase() === "body") {
-			var rowContent = '<ul class="section add"><header>+ New Section</header></ul>'
+			var rowContent = '<ul class="section add add-section" id="item-'+i+'"><header>+ New Section</header></ul>'
 		}
 		console.log(rowContent);
 		parent.append(rowContent);
 	},
 	showForm: function(event) {
+		var i = Editor.nextI();
+		$('form').remove();
+		$('.add').show();
 		addLink = $(event.target);
+		console.log( $(addLink) );
 		addLink.hide();
 		//series = addLink.closest('.series');
 		section = addLink.closest('.section');
@@ -38,6 +48,7 @@ var Editor = {
 	},
 	submitForm: function(event, data) {
 		event.preventDefault();
+		var i = Editor.nextI();
 		var newItem = $('#new_item');
 		var newItemText = newItem.val();
 		var section = data.section; 
