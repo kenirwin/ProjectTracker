@@ -27,8 +27,8 @@ var Editor = {
 		else if (parent.prop("tagName").toLowerCase() === "body") {
 			var rowContent = '<ul class="section add add-section" id="item-'+i+'"><header class="add-section-inner" data-childOf="item-'+i+'">+ New Section</header></ul>'
 		}
-		//console.log(rowContent);
 		parent.append(rowContent);
+		$('#item-'+i).on('click', Editor.showForm);
 	},
 	showForm: function(event) {
 		var i = Editor.nextI();
