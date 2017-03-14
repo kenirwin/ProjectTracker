@@ -76,12 +76,27 @@ var Editor = {
 		}
 		$(form).remove();
 	},
-	displayNew: function() {
-	
+	toggle: function(event) {
+		var done = $(this).parent().data('done');
+		var outof = $(this).parent().data('outof')
+		if( $(this).hasClass('done')) {
+			$(this).removeClass('done').addClass('undone');
+			done--;
+		} else if ($(this).hasClass('undone')) {
+			$(this).removeClass('undone').addClass('done');
+			done++;
+		}
+		var percentdone = done/outof*100+'%';
+		console.log ("New done: " + done);
+		$(this).parent().data('done', done);
+		$(this).parent().data('percentdone', percentdone);
+		console.log("New percent: " + $(this).parent().data('percentdone'));
+		$(this).parent().parent().find('.w3-progressbar').css('width',percentdone).
+			find('.w3-left').text(percentdone);
 	}
 }
 Editor.init();
 $('body').on('addLink', Editor.addNewLink);
 $('.add').on('click', Editor.showForm);
-
+$('.done, .undone').on('click', Editor.toggle);
 });
