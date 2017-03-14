@@ -98,7 +98,7 @@ var Editor = {
 		var done = seriesLi.find('.done').length;
 		var undone = seriesLi.find('.undone').length;
 		var outof = done + undone;
-		var percentdone = done / outof * 100 + '%';
+		var percentdone = Math.round(done / outof * 100) + '%';
 		$(seriesLi).find('.series').data('done',done).
 			data('outof',outof).
 			data('percentdone',percentdone);
