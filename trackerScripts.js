@@ -77,21 +77,25 @@ var Editor = {
 		$(form).remove();
 	},
 	toggle: function(event) {
-		var done = $(this).parent().data('done');
-		var outof = $(this).parent().data('outof')
 		if( $(this).hasClass('done')) {
 			$(this).removeClass('done').addClass('undone');
-			done--;
 		} else if ($(this).hasClass('undone')) {
 			$(this).removeClass('undone').addClass('done');
-			done++;
 		}
-		var percentdone = done/outof*100+'%';
-		console.log ("New done: " + done);
-		$(this).parent().data('done', done);
-		$(this).parent().data('percentdone', percentdone);
-		console.log("New percent: " + $(this).parent().data('percentdone'));
-		$(this).parent().parent().find('.w3-progressbar').css('width',percentdone).
+		var seriesLi = $(this).closest('.series').parent() ;
+		Editor.calcDone( seriesLi );
+	},
+	calcDone: function (seriesLi) {
+		console.log( $(seriesLi) );
+		var done = seriesLi.find('.done').length;
+		var undone = seriesLi.find('.undone').length;
+		var outof = done + undone;
+		var percentdone = done / outof * 100 + '%';
+		//console.log (done +'/'+outof +'='+percentdone);
+		$(seriesLi).find('.series').data('done',done).
+			data('outof',outof).
+			data('percentdone',percentdone);
+		$(seriesLi).find('.w3-progressbar').css('width',percentdone).
 			find('.w3-left').text(percentdone);
 	}
 }
