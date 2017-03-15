@@ -79,7 +79,7 @@ var Editor = {
     	else { 
 	    	$(form).before('<li class="undone" id="item-'+i+'">'+newItemText+'</li>');
 	    	var seriesLi = $(form).closest('.series').parent() ;
-	    	$('.done, .undone').on('click', Editor.toggle);
+	    	$('.done, .undone').off('click').on('click', Editor.toggle);
 			Editor.calcDone( seriesLi );
 		}
 		$(form).remove();
