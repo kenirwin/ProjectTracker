@@ -67,6 +67,22 @@ ul, li {
     padding-left: .5em;
 }
 
+/* Fold - Unfold */
+
+.series-wrapper header::before {
+	content: "\25bc  ";
+	color: grey;
+}
+.series-wrapper li {
+	display: block;
+}
+.series-wrapper.fold header::before {
+	content: "\25b6  ";
+	color: grey;
+}
+.series-wrapper.fold li {
+	display: none;
+}	
 /* Edit Screen 
 #edit .w3-progress-container {
     display: none; 
@@ -75,7 +91,7 @@ ul, li {
     font-style: italic;
 }
 */
-/* Responsive */
+/* Responsive 
 @media screen and (max-width: 500px) {
 
     .section li header::before {
@@ -85,4 +101,5 @@ ul, li {
     .series li {
 	display: none
     }
+*/
 }

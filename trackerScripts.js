@@ -104,10 +104,14 @@ var Editor = {
 			data('percentdone',percentdone);
 		$(seriesLi).find('.w3-progressbar').css('width',percentdone).
 			find('.w3-left').text(percentdone);
+	},
+	foldUnfold: function () {
+		$(this).parent().toggleClass('fold');
 	}
 }
 Editor.init();
 $('body').on('addLink', Editor.addNewLink);
 $('.add').on('click', Editor.showForm);
 $('.done, .undone').on('click', Editor.toggle);
+$('.series-wrapper header').on('click', Editor.foldUnfold);
 });
