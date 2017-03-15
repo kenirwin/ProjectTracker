@@ -63,7 +63,7 @@ var Editor = {
 		var section = data.section; //never used?
 		form = $(event.target);
 		if ( $('#entryType').val() === "series" ) {
-    		$(form).before('<li id="item-'+i+'" class="added"><header data-childOf="'+i+'">'+newItemText+
+    		$(form).before('<li class="series-wrapper" id="item-'+i+'" class="added"><header data-childOf="'+i+'">'+newItemText+
     	'<div class="w3-progress-container w3-round w3-red">'+
 	    '<div class="w3-progressbar w3-round w3-green" style="width:0%">'+
 	    ' <div class="w3-left w3-text-white">0%</div>'+
